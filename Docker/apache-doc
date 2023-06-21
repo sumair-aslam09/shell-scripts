@@ -1,0 +1,17 @@
+# Use the official Apache HTTP Server base image
+FROM httpd:2.4
+
+# Copy the index.html file to the Apache document root directory
+COPY index.html /usr/local/apache2/htdocs/
+
+# Copy the script.sh file to the root directory inside the container
+COPY script.sh /script.sh
+
+# Make the script executable
+RUN chmod +x /script.sh
+
+# Expose port 80 (default for Apache)
+EXPOSE 80
+
+# Set the script.sh file as the entrypoint
+ENTRYPOINT ["/script.sh"]

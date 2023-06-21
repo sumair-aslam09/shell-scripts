@@ -1,0 +1,36 @@
+Go to Pipeline syntax
+--withCredentials:Bind Credentials to variables
+---Bindings
+	-->Secret text-->variable=dockerhubpwd
+		      -->Credentials-->dockerhub  -->Add-->Jenkins-->Kind
+
+Kind-->Secret text-->secret=password,ID=dockerhub--Add
+Copy this and paste in pipeline
+-----------------------------------------------------------------
+stage('Build docker image'){
+	steps{
+		script{
+			sh 'docker build -t image .'
+		}
+	}
+}
+stage('Push image to hub') {
+	steps {
+		script{
+			withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubpwd')]) {
+			sh 'docker login -u 78160 -p ${dockerhubpwd}'
+		}
+			sh 'docker push image'
+	}
+}
+---------------------------------------------------------
+for scm-github
+
+stages {
+	stage('SCM Checkout') {
+		steps{
+		git 'https://github.com/ravdy/nodejs-demo.git'
+		}
+	}
+}
+--------------------------------------------------------------

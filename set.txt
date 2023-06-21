@@ -1,0 +1,6 @@
+HISTFILE=/home/sumair/.bash_history
+HOME=/home/sumair
+LOGNAME=sumair
+PWD=/home/sumair
+USER=sumair
+sumair=DevOps_Engineer
